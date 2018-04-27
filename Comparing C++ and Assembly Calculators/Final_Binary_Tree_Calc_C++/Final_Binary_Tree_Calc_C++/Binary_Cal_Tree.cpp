@@ -502,6 +502,10 @@ double Binary_Cal_Tree::evaluate_tree(bool& error_handling)
  ************************************************************/
 double Binary_Cal_Tree::evaluate_tree_recursive(T_Node* given_node,bool& error_handling)
 {
+//    We are creating a dummy holder and storing each side of the equations to a variable before evaluation rather than
+//    just returning the direct result to emulate how things are working on the asm side and create a level playing field
+    double dummy_holder[2];
+    
     if(given_node == NULL || given_node->data == "")//Error found null node and unit data
     {
         error_handling = EXIT_FAILURE;
@@ -520,23 +524,33 @@ double Binary_Cal_Tree::evaluate_tree_recursive(T_Node* given_node,bool& error_h
     {
         if(given_node->data == "+")
         {
-            return evaluate_tree_recursive(given_node->left,error_handling) + evaluate_tree_recursive(given_node->right,error_handling);
+            dummy_holder[0] = evaluate_tree_recursive(given_node->left,error_handling);
+            dummy_holder[1] = evaluate_tree_recursive(given_node->right,error_handling);
+            return dummy_holder[0] + dummy_holder[1];
         }
         else if(given_node->data == "-")
         {
-            return evaluate_tree_recursive(given_node->left,error_handling) - evaluate_tree_recursive(given_node->right,error_handling);
+            dummy_holder[0] = evaluate_tree_recursive(given_node->left,error_handling);
+            dummy_holder[1] = evaluate_tree_recursive(given_node->right,error_handling);
+            return dummy_holder[0] - dummy_holder[1];
         }
         else if(given_node->data == "/")
         {
-            return (evaluate_tree_recursive(given_node->left,error_handling) / evaluate_tree_recursive(given_node->right,error_handling));
+            dummy_holder[0] = evaluate_tree_recursive(given_node->left,error_handling);
+            dummy_holder[1] = evaluate_tree_recursive(given_node->right,error_handling);
+            return dummy_holder[0] / dummy_holder[1];
         }
         else if(given_node->data == "*" || given_node->data == "x")
         {
-            return evaluate_tree_recursive(given_node->left,error_handling) * evaluate_tree_recursive(given_node->right,error_handling);
+            dummy_holder[0] = evaluate_tree_recursive(given_node->left,error_handling);
+            dummy_holder[1] = evaluate_tree_recursive(given_node->right,error_handling);
+            return dummy_holder[0] * dummy_holder[1];
         }
         else if (given_node->data == "^")
         {
-            return pow(evaluate_tree_recursive(given_node->left,error_handling),evaluate_tree_recursive(given_node->right,error_handling));
+            dummy_holder[0] = evaluate_tree_recursive(given_node->left,error_handling);
+            dummy_holder[1] = evaluate_tree_recursive(given_node->right,error_handling);
+            return pow(dummy_holder[0],dummy_holder[1]);
         }
         else//unknown basic operator was added somehow (this should never occur)
         {
@@ -548,27 +562,35 @@ double Binary_Cal_Tree::evaluate_tree_recursive(T_Node* given_node,bool& error_h
     {
         if(given_node->data == "!")
         {
-            return factorial(evaluate_tree_recursive(given_node->left,error_handling));
+            dummy_holder[0] = evaluate_tree_recursive(given_node->left,error_handling);
+            return factorial(dummy_holder[0]);
         }
         else if(given_node->data == "tan(")
         {
-            return tan(evaluate_tree_recursive(given_node->right,error_handling));
+            dummy_holder[0] = evaluate_tree_recursive(given_node->right,error_handling);
+            return tan(dummy_holder[0]);
         }
         else if(given_node->data == "sin(")
         {
-            return sin(evaluate_tree_recursive(given_node->right,error_handling));
+            dummy_holder[0] = evaluate_tree_recursive(given_node->right,error_handling);
+            return sin(dummy_holder[0]);
         }
         else if (given_node->data == "cos(")
         {
-            return cos(evaluate_tree_recursive(given_node->right,error_handling));
+            dummy_holder[0] = evaluate_tree_recursive(given_node->right,error_handling);
+            return cos(dummy_holder[0]);
         }
         else if (given_node->data == "npr")
         {
-            return permutations(evaluate_tree_recursive(given_node->left,error_handling),evaluate_tree_recursive(given_node->right,error_handling));
+            dummy_holder[0] = evaluate_tree_recursive(given_node->left,error_handling);
+            dummy_holder[1] = evaluate_tree_recursive(given_node->right,error_handling);
+            return permutations(dummy_holder[0],dummy_holder[1]);
         }
         else if (given_node->data == "ncr")
         {
-            return combinations(evaluate_tree_recursive(given_node->left,error_handling),evaluate_tree_recursive(given_node->right,error_handling));
+            dummy_holder[0] = evaluate_tree_recursive(given_node->left,error_handling);
+            dummy_holder[1] = evaluate_tree_recursive(given_node->right,error_handling);
+            return combinations(dummy_holder[0],dummy_holder[1]);
         }
         else//unknown basic function was added somehow (this should never occur)
         {
