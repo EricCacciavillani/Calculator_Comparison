@@ -23,7 +23,6 @@ void Binary_Cal_Tree:: clean_tree()
     // Returns the given nodes back to the heap
     if(main_root != NULL)
     {
-        
         thread left( [this] { free_tree(main_root->left); } );
         thread right( [this] { free_tree(main_root->right); } );
         
@@ -246,43 +245,157 @@ bool Binary_Cal_Tree::is_tree_balanced()
     return checking_balance;
 }
 /******************** MATH FUNCTIONS ********************/
-double Binary_Cal_Tree::factorial(double x){return tgamma(x+1);}
-
-
-int Binary_Cal_Tree::permutations(int n, int r)
+int Binary_Cal_Tree::asm_factorial(int base)
 {
-    int result = 1;
-    int difference = n-r;
     
-    if(difference < 0 || n < 0 || r < 0)
-    {
-        return 0;
-    }
+    int result;
     
-    for(int i = n; i > difference; i--)
-    {
-        result = result * i;
-    }
+    asm ("movl $1,%%eax;"
+         "movl %1, %%ecx;"
+         
+         "factorial_loop:;"
+         "imull %%ecx, %%eax;"
+         "decl %%ecx;"
+         "cmpl $1,%%ecx;"
+         "jne factorial_loop;"
+         "movl %%eax, %0;"
+         : "=r" (result)
+         : "r" (base)
+         : "%eax", "%ecx"
+         );
     
     return result;
 }
-int Binary_Cal_Tree::combinations(int n, int r)
+
+double Binary_Cal_Tree::asm_power(double base,int exponent){
+    
+    dummy_result = base;
+    
+    // Exponent
+    asm ("finit;"               // Init FPU stack
+         "movl %2,%%ecx;"       // Move exponent to to ecx
+         
+         "cmpl $1,%%ecx;"       // Ensure that ecx is not 1
+         "je done;"             // Result will be just base
+         
+         "cmpl $0,%%ecx;"       // Checks for Zero Power Rule
+         // Move 1 to result (%0)
+         "je done;"
+         
+         "cmpl $-1,%%ecx;"      // Checks for negative exponents
+         "jg loop;"
+         // Change base for negs (1/2)
+         
+         
+         "loop:;"
+         "fldl %0;"         // Push result var to stack
+         "fmull %1;"        // Multiply by base value
+         "fstpl %0;"        // Return result
+         
+         "decl %%ecx;"      // Ensures looping will continue until exponent is 1
+         "cmpl $1,%%ecx;"
+         "jne loop;"
+         
+         "done:;"
+         
+         :"=m"(dummy_result)
+         : "m" (base),"m"(exponent)
+         : "%eax","%ecx");
+    
+    return dummy_result;
+}
+
+int Binary_Cal_Tree::asm_combinations(int n, int r)
 {
+    int result;
     
-    if(r > n / 2)//combinations(n, r) == combinations(n, n - r)
-    {
-        r = n - r;
-    }
-    int result = 1,i;
+    asm("movl $1,%0;"
+        "movl $0, %%edx;"
+        "movl %1, %%eax;"
+        "movl $2, %%ecx;"
+        "divl %%ecx;"
+        
+        "cmpl %2,%%eax;"
+        "jl combinations_sub;"
+        "jmp combinations_loop_setup;"
+        
+        "combinations_sub:;"
+        "movl %2, %%ecx;"
+        "movl %1, %%eax;"
+        "subl %%ecx, %%eax;"
+        "movl %%eax,%2;"
+        
+        "combinations_loop_setup:;"
+        "movl $1,%%ecx;"
+        
+        "combinations_loop:;"
+        "movl $0, %%edx;"
+        "movl %0,%%eax;"
+        "imull %1, %%eax;"
+        "subl %2, %%eax;"
+        "addl %%ecx, %%eax;"
+        "divl %%ecx, %%eax;"
+        
+        "movl %%eax,%0;"
+        
+        "incl %%ecx;"
+        
+        "cmpl %2,%%ecx;"
+        "jle combinations_loop;"
+        
+        : "=m"(result)
+        : "m"(n),"m"(r)
+        : "%edx","%eax","%ecx");
     
-    for(i = 1; i <= r; i++)
-    {
-        result = result * n - r + i;
-        result = result / i;
-    }
     
     return result;
 }
+
+
+int Binary_Cal_Tree::asm_permutations(int n, int r)
+{    
+    int result,difference;
+    
+    asm ("movl $1,%0;"
+         
+         "movl %2, %%eax;"
+         "subl %3, %%eax;"
+         "movl %%eax, %1;"
+         // Put check statements here
+         
+         "cmpl $0,%1;"
+         "je permutations_done;"
+         
+         "cmpl $0,%2;"
+         "je permutations_done;"
+         
+         "cmpl $0,%3;"
+         "je permutations_done;"
+         
+         
+         "movl %2,%%ecx;"    // Move exponent to to ecx
+         
+         "permutations_loop:;"
+         
+         "movl %0,%%eax;"
+         "imull %%ecx, %%eax;"
+         "movl %%eax,%0;"
+         
+         "decl %%ecx;"
+         "cmpl %1,%%ecx;"
+         
+         "je permutations_done;"
+         "jmp permutations_loop;"
+         
+         "permutations_done:;"
+         : "+m"(result), "+m"(difference)
+         : "m"(n),"m"(r)
+         : "%eax","%ecx");
+    
+    return result;
+}
+
+
 /******************** MATH FUNCTIONS ********************/
 
 
@@ -475,44 +588,6 @@ double Binary_Cal_Tree::evaluate_tree(bool& error_handling)
 }
 
 
-double Binary_Cal_Tree::asm_power(double base,int exponent){
-    
-    dummy_result = base;
-    
-    // Exponent
-    asm ("finit;"               // Init FPU stack
-         "movl %2,%%ecx;"       // Move exponent to to ecx
-         
-         "cmpl $1,%%ecx;"       // Ensure that ecx is not 1
-         "je done;"             // Result will be just base
-         
-         "cmpl $0,%%ecx;"       // Checks for Zero Power Rule
-         // Move 1 to result (%0)
-         "je done;"
-         
-         "cmpl $-1,%%ecx;"      // Checks for negative exponents
-         "jg loop;"
-         // Change base for negs (1/2)
-         
-         
-         "loop:;"
-         "fldl %0;"         // Push result var to stack
-         "fmull %1;"        // Multiply by base value
-         "fstpl %0;"        // Return result
-         
-         "decl %%ecx;"      // Ensures looping will continue until exponent is 1
-         "cmpl $1,%%ecx;"
-         "jne loop;"
-         
-         "done:;"
-         
-         :"=m"(dummy_result)
-         : "m" (base),"m"(exponent)
-         : "%eax","%ecx");
-    
-    return dummy_result;
-}
-
 /************************************************************
  Evaluate tree recursive
  
@@ -612,8 +687,6 @@ double Binary_Cal_Tree::evaluate_tree_recursive(T_Node* given_node,bool& error_h
         }
         else if (given_node->data == "^")
         {
-            
-            
             return asm_power(evaluate_tree_recursive(given_node->left,error_handling),evaluate_tree_recursive(given_node->right,error_handling));;
         }
         else//unknown basic operator was added somehow (this should never occur)
@@ -626,7 +699,7 @@ double Binary_Cal_Tree::evaluate_tree_recursive(T_Node* given_node,bool& error_h
     {
         if(given_node->data == "!")
         {
-            return factorial(evaluate_tree_recursive(given_node->left,error_handling));
+            return asm_factorial(evaluate_tree_recursive(given_node->left,error_handling));
         }
         else if(given_node->data == "tan(")
         {
@@ -657,11 +730,11 @@ double Binary_Cal_Tree::evaluate_tree_recursive(T_Node* given_node,bool& error_h
         }
         else if (given_node->data == "npr")
         {
-            return permutations(evaluate_tree_recursive(given_node->left,error_handling),evaluate_tree_recursive(given_node->right,error_handling));
+            return asm_permutations(evaluate_tree_recursive(given_node->left,error_handling),evaluate_tree_recursive(given_node->right,error_handling));
         }
         else if (given_node->data == "ncr")
         {
-            return combinations(evaluate_tree_recursive(given_node->left,error_handling),evaluate_tree_recursive(given_node->right,error_handling));
+            return asm_combinations(evaluate_tree_recursive(given_node->left,error_handling),evaluate_tree_recursive(given_node->right,error_handling));
         }
         else//unknown basic function was added somehow (this should never occur)
         {

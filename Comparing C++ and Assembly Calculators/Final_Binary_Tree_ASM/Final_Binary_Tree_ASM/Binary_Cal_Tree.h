@@ -153,10 +153,10 @@ private:
     
     /******** Added Math Functions ********/
     
-    double factorial(double);
-    int permutations(int, int);
-    int combinations(int, int);
+    int asm_factorial(int);
+    int asm_combinations(int,int);
     double asm_power(double,int);
+    int asm_permutations(int, int);
     
     /******** Added Math Functions ********/
     
