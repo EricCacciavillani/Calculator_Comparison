@@ -1,0 +1,156 @@
+		   Equation Test #1
+========================================
+		  (2/7)*2!+7 = 7.57143
+
+Average Time Taken:   10741 nanoseconds
+Best Time Taken:      10127 nanoseconds
+Z-Score of best time: 0.339333
+Standard Deviation:   1809.43 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #2
+========================================
+		  (5)!*94 = 11280
+
+Average Time Taken:   6008 nanoseconds
+Best Time Taken:      5236 nanoseconds
+Z-Score of best time: 0.268024
+Standard Deviation:   2880.34 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #3
+========================================
+		  1/9 = 0.111111
+
+Average Time Taken:   2683 nanoseconds
+Best Time Taken:      2557 nanoseconds
+Z-Score of best time: 0.2588
+Standard Deviation:   486.863 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #4
+========================================
+		  2+(2/3) = 2.66667
+
+Average Time Taken:   4981 nanoseconds
+Best Time Taken:      4767 nanoseconds
+Z-Score of best time: 0.43175
+Standard Deviation:   495.658 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #5
+========================================
+		  5+5 = 10
+
+Average Time Taken:   2453 nanoseconds
+Best Time Taken:      2378 nanoseconds
+Z-Score of best time: 0.15677
+Standard Deviation:   478.409 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #6
+========================================
+		  6/7 = 0.857143
+
+Average Time Taken:   2619 nanoseconds
+Best Time Taken:      2505 nanoseconds
+Z-Score of best time: 0.116592
+Standard Deviation:   977.769 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #7
+========================================
+		  79*263+71 = 20848
+
+Average Time Taken:   5073 nanoseconds
+Best Time Taken:      4742 nanoseconds
+Z-Score of best time: 0.150566
+Standard Deviation:   2198.37 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #8
+========================================
+		  876*2+3/2*7 = 1762.5
+
+Average Time Taken:   9916 nanoseconds
+Best Time Taken:      9508 nanoseconds
+Z-Score of best time: 0.180257
+Standard Deviation:   2263.44 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #9
+========================================
+		  9*6^4 = 11664
+
+Average Time Taken:   5664 nanoseconds
+Best Time Taken:      4940 nanoseconds
+Z-Score of best time: 0.23804
+Standard Deviation:   3041.5 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #10
+========================================
+		  9^2*(8) = 648
+
+Average Time Taken:   5293 nanoseconds
+Best Time Taken:      5088 nanoseconds
+Z-Score of best time: 0.204755
+Standard Deviation:   1001.2 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #11
+========================================
+		  9ncr5 = 173
+
+Average Time Taken:   3240 nanoseconds
+Best Time Taken:      2940 nanoseconds
+Z-Score of best time: 0.296237
+Standard Deviation:   1012.7 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #12
+========================================
+		  cos(90 = -0.448074
+
+Average Time Taken:   3514 nanoseconds
+Best Time Taken:      2737 nanoseconds
+Z-Score of best time: 0.420791
+Standard Deviation:   1846.52 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #13
+========================================
+		  tan(58 = 8.33086
+
+Average Time Taken:   2740 nanoseconds
+Best Time Taken:      2622 nanoseconds
+Z-Score of best time: 0.287664
+Standard Deviation:   410.201 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
