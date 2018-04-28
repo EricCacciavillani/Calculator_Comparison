@@ -124,7 +124,7 @@ int Binary_Cal_Tree::find_height_of_tree()
     {
         //looks left and right of the main root and grabs the height of both branches
         int left_branch_height = find_height_of_branch(main_root->left),
-        right_branch_height = find_height_of_branch(main_root->right);
+            right_branch_height = find_height_of_branch(main_root->right);
         
         return ((left_branch_height > right_branch_height) ? left_branch_height : right_branch_height);//which is greater? left or right?
     }
@@ -245,6 +245,35 @@ bool Binary_Cal_Tree::is_tree_balanced()
     return checking_balance;
 }
 /******************** MATH FUNCTIONS ********************/
+int Binary_Cal_Tree::asm_bitwise_and(int value,int offset)
+{
+    asm ("movl %1,%%eax;"
+         "andl %0,%%eax;"
+         "movl %%eax,%0;"
+         
+         : "=m" (value)
+         : "m" (offset)
+         : "%eax"
+         );
+    
+    return value;
+}
+
+int Binary_Cal_Tree::asm_bitwise_or(int value,int offset)
+{
+    asm ("movl %1,%%eax;"
+         "orl %0,%%eax;"
+         "movl %%eax,%0;"
+         
+         : "=m" (value)
+         : "m" (offset)
+         : "%eax"
+         );
+    
+    return value;
+}
+
+
 int Binary_Cal_Tree::asm_factorial(int base)
 {
     
@@ -397,7 +426,6 @@ int Binary_Cal_Tree::asm_permutations(int n, int r)
 
 
 /******************** MATH FUNCTIONS ********************/
-
 
 
 /********************* Functions for creating cal tree *********************/
@@ -736,6 +764,25 @@ double Binary_Cal_Tree::evaluate_tree_recursive(T_Node* given_node,bool& error_h
         {
             return asm_combinations(evaluate_tree_recursive(given_node->left,error_handling),evaluate_tree_recursive(given_node->right,error_handling));
         }
+        else if (given_node->data == "&")
+        {
+            return asm_bitwise_and(int(evaluate_tree_recursive(given_node->left,error_handling)), int(evaluate_tree_recursive(given_node->right,error_handling)));
+        }
+        else if (given_node->data == "|")
+        {
+            return asm_bitwise_or(int(evaluate_tree_recursive(given_node->left,error_handling)), int(evaluate_tree_recursive(given_node->right,error_handling)));
+        }
+        /*
+        else if (given_node->data == "<<")
+        {
+            return asm_bitwise_left(int(evaluate_tree_recursive(given_node->left,error_handling)), int(evaluate_tree_recursive(given_node->right,error_handling)));
+        }
+        else if (given_node->data == ">>")
+        {
+            return asm_bitwise_right(int(evaluate_tree_recursive(given_node->left,error_handling)), int(evaluate_tree_recursive(given_node->right,error_handling)));
+        }
+         */
+        
         else//unknown basic function was added somehow (this should never occur)
         {
             error_handling = EXIT_FAILURE;
@@ -1292,8 +1339,10 @@ bool Binary_Cal_Tree::syntax_checking_to_fixing_string(string& equation_str,stac
                     break;
                 }
             }
+            
             //cout << given_element << "f\n";//de-buger
             infix_expersion.push(given_element);
+            
             //Resets the process for the next element to grab
             given_element = "";
             last_type = -1;

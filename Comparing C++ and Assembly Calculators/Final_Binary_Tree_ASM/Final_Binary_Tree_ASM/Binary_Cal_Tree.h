@@ -55,7 +55,7 @@ private:
      -For muliple vars to the right they must be seperated by : and the start and end of the function must be declared with |
      -Ex. n_rt(|x:x|     Again please do not use this n_rt function! It has not be implmented yet!
      */
-    string given_functions[7] = {"tan(x","cos(x","sin(x","x!","x npr x","x ncr x","n_rt(|x:x|"};
+    string given_functions[8] = {"tan(x","cos(x","sin(x","x!","x npr x","x ncr x","x & x","x | x"};
     
     unsigned const int size_of_function_array = sizeof(given_functions) / sizeof(string);
     
@@ -157,6 +157,9 @@ private:
     int asm_combinations(int,int);
     double asm_power(double,int);
     int asm_permutations(int, int);
+    int asm_bitwise_and(int,int);
+    int asm_bitwise_or(int,int);
+    int asm_bitwise_xor(int,int);
     
     /******** Added Math Functions ********/
     
