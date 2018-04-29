@@ -411,6 +411,8 @@ void Binary_Cal_Tree::create_tree_with_infix(string& equation_string)
     {
         init_functions_map(given_functions, size_of_function_array);
     }
+    cout << error_checking_tree_create << "\n";
+    
     if(syntax_checking_to_fixing_string(equation_string,inverted_infix_expersion) == EXIT_SUCCESS)
     {
         cout << "No errors caught in syntax checking...\n\n";
@@ -552,28 +554,6 @@ double Binary_Cal_Tree::evaluate_tree_recursive(T_Node* given_node,bool& error_h
             dummy_holder[1] = evaluate_tree_recursive(given_node->right,error_handling);
             return pow(dummy_holder[0],dummy_holder[1]);
         }
-        else if (given_node->data == "&")
-        {
-            dummy_holder[0] = int(evaluate_tree_recursive(given_node->left,error_handling));
-            dummy_holder[1] = int(evaluate_tree_recursive(given_node->right,error_handling));
-            return (dummy_holder[0] & dummy_holder[1]);
-        }
-        else if (given_node->data == "|")
-        {
-            dummy_holder[0] = int(evaluate_tree_recursive(given_node->left,error_handling));
-            dummy_holder[1] = int(evaluate_tree_recursive(given_node->right,error_handling));
-            return (dummy_holder[0] | dummy_holder[1]);
-        }
-        /*
-        else if (given_node->data == "<<")
-        {
-            return (int(evaluate_tree_recursive(given_node->left,error_handling)) << int(evaluate_tree_recursive(given_node->right,error_handling)));
-        }
-        else if (given_node->data == ">>")
-        {
-            return (int(evaluate_tree_recursive(given_node->left,error_handling)) >> int(evaluate_tree_recursive(given_node->right,error_handling)));
-        }
-         */
         else//unknown basic operator was added somehow (this should never occur)
         {
             error_handling = EXIT_FAILURE;
@@ -613,6 +593,14 @@ double Binary_Cal_Tree::evaluate_tree_recursive(T_Node* given_node,bool& error_h
             dummy_holder[0] = evaluate_tree_recursive(given_node->left,error_handling);
             dummy_holder[1] = evaluate_tree_recursive(given_node->right,error_handling);
             return combinations(dummy_holder[0],dummy_holder[1]);
+        }
+        else if (given_node->data == "&")
+        {
+            return (int(evaluate_tree_recursive(given_node->left,error_handling)) & int(evaluate_tree_recursive(given_node->right,error_handling)));
+        }
+        else if (given_node->data == "|")
+        {
+            return (int(evaluate_tree_recursive(given_node->left,error_handling)) | int(evaluate_tree_recursive(given_node->right,error_handling)));
         }
         else//unknown basic function was added somehow (this should never occur)
         {

@@ -62,16 +62,16 @@ private:
     
     //Explict def of var positions
     const int VAL_HIT = 0,
-              OPER_HIT = 1,
-              FUNC_HIT = 2,
-              CHAR_HIT = 3,
-              PAR_START_HIT = 4,
-              PAR_END_HIT = 5;
+    OPER_HIT = 1,
+    FUNC_HIT = 2,
+    CHAR_HIT = 3,
+    PAR_START_HIT = 4,
+    PAR_END_HIT = 5;
     
     //Explict def of var positions
     const int VAR_LEFT_ONLY = 1,
-              VAR_LEFT_RIGHT_ONLY = 2,
-              VAR_RIGHT_ONLY = -1;
+    VAR_LEFT_RIGHT_ONLY = 2,
+    VAR_RIGHT_ONLY = -1;
     
     double dummy_result = 0.0;
     
@@ -159,7 +159,6 @@ private:
     int asm_permutations(int, int);
     int asm_bitwise_and(int,int);
     int asm_bitwise_or(int,int);
-    int asm_bitwise_xor(int,int);
     
     /******** Added Math Functions ********/
     

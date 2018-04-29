@@ -2,10 +2,10 @@
 ========================================
 		  (2/7)*2!+7 = 7.57143
 
-Average Time Taken:   10741 nanoseconds
-Best Time Taken:      10127 nanoseconds
-Z-Score of best time: 0.339333
-Standard Deviation:   1809.43 nanoseconds
+Average Time Taken:   12198 nanoseconds
+Best Time Taken:      9938 nanoseconds
+Z-Score of best time: 0.481227
+Standard Deviation:   4696.33 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
@@ -14,10 +14,10 @@ Test Case is : CORRECT!
 ========================================
 		  (5)!*94 = 11280
 
-Average Time Taken:   6008 nanoseconds
-Best Time Taken:      5236 nanoseconds
-Z-Score of best time: 0.268024
-Standard Deviation:   2880.34 nanoseconds
+Average Time Taken:   6778 nanoseconds
+Best Time Taken:      5441 nanoseconds
+Z-Score of best time: 0.389819
+Standard Deviation:   3429.8 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
@@ -26,130 +26,262 @@ Test Case is : CORRECT!
 ========================================
 		  1/9 = 0.111111
 
-Average Time Taken:   2683 nanoseconds
-Best Time Taken:      2557 nanoseconds
-Z-Score of best time: 0.2588
-Standard Deviation:   486.863 nanoseconds
+Average Time Taken:   3037 nanoseconds
+Best Time Taken:      2528 nanoseconds
+Z-Score of best time: 0.366494
+Standard Deviation:   1388.83 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
 
 		   Equation Test #4
 ========================================
-		  2+(2/3) = 2.66667
+		  10-4 = 6
 
-Average Time Taken:   4981 nanoseconds
-Best Time Taken:      4767 nanoseconds
-Z-Score of best time: 0.43175
-Standard Deviation:   495.658 nanoseconds
+Average Time Taken:   2629 nanoseconds
+Best Time Taken:      2479 nanoseconds
+Z-Score of best time: 0.158858
+Standard Deviation:   944.238 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
 
 		   Equation Test #5
 ========================================
-		  5+5 = 10
+		  16-9 = 7
 
-Average Time Taken:   2453 nanoseconds
-Best Time Taken:      2378 nanoseconds
-Z-Score of best time: 0.15677
-Standard Deviation:   478.409 nanoseconds
+Average Time Taken:   2625 nanoseconds
+Best Time Taken:      2494 nanoseconds
+Z-Score of best time: 0.143854
+Standard Deviation:   910.647 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
 
 		   Equation Test #6
 ========================================
-		  6/7 = 0.857143
+		  2+(2/3) = 2.66667
 
-Average Time Taken:   2619 nanoseconds
-Best Time Taken:      2505 nanoseconds
-Z-Score of best time: 0.116592
-Standard Deviation:   977.769 nanoseconds
+Average Time Taken:   5136 nanoseconds
+Best Time Taken:      4852 nanoseconds
+Z-Score of best time: 0.204984
+Standard Deviation:   1385.47 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
 
 		   Equation Test #7
 ========================================
-		  79*263+71 = 20848
+		  2.1^2 = 4.41
 
-Average Time Taken:   5073 nanoseconds
-Best Time Taken:      4742 nanoseconds
-Z-Score of best time: 0.150566
-Standard Deviation:   2198.37 nanoseconds
+Average Time Taken:   2840 nanoseconds
+Best Time Taken:      2650 nanoseconds
+Z-Score of best time: 0.172506
+Standard Deviation:   1101.41 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
 
 		   Equation Test #8
 ========================================
-		  876*2+3/2*7 = 1762.5
+		  20&5 = 4
 
-Average Time Taken:   9916 nanoseconds
-Best Time Taken:      9508 nanoseconds
-Z-Score of best time: 0.180257
-Standard Deviation:   2263.44 nanoseconds
+Average Time Taken:   3162 nanoseconds
+Best Time Taken:      2937 nanoseconds
+Z-Score of best time: 0.172071
+Standard Deviation:   1307.6 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
 
 		   Equation Test #9
 ========================================
-		  9*6^4 = 11664
+		  20|5 = 21
 
-Average Time Taken:   5664 nanoseconds
-Best Time Taken:      4940 nanoseconds
-Z-Score of best time: 0.23804
-Standard Deviation:   3041.5 nanoseconds
+Average Time Taken:   3099 nanoseconds
+Best Time Taken:      2896 nanoseconds
+Z-Score of best time: 0.234192
+Standard Deviation:   866.81 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
 
 		   Equation Test #10
 ========================================
-		  9^2*(8) = 648
+		  4! = 24
 
-Average Time Taken:   5293 nanoseconds
-Best Time Taken:      5088 nanoseconds
-Z-Score of best time: 0.204755
-Standard Deviation:   1001.2 nanoseconds
+Average Time Taken:   2902 nanoseconds
+Best Time Taken:      2714 nanoseconds
+Z-Score of best time: 0.188465
+Standard Deviation:   997.532 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
 
 		   Equation Test #11
 ========================================
-		  9ncr5 = 173
+		  5*(2+3) = 25
 
-Average Time Taken:   3240 nanoseconds
-Best Time Taken:      2940 nanoseconds
-Z-Score of best time: 0.296237
-Standard Deviation:   1012.7 nanoseconds
+Average Time Taken:   5161 nanoseconds
+Best Time Taken:      4834 nanoseconds
+Z-Score of best time: 0.22063
+Standard Deviation:   1482.12 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
 
 		   Equation Test #12
 ========================================
-		  cos(90 = -0.448074
+		  5+5 = 10
 
-Average Time Taken:   3514 nanoseconds
-Best Time Taken:      2737 nanoseconds
-Z-Score of best time: 0.420791
-Standard Deviation:   1846.52 nanoseconds
+Average Time Taken:   2602 nanoseconds
+Best Time Taken:      2434 nanoseconds
+Z-Score of best time: 0.202203
+Standard Deviation:   830.847 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------
 
 		   Equation Test #13
 ========================================
+		  6/7 = 0.857143
+
+Average Time Taken:   2879 nanoseconds
+Best Time Taken:      2531 nanoseconds
+Z-Score of best time: 0.203228
+Standard Deviation:   1712.36 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #14
+========================================
+		  79*263+71 = 20848
+
+Average Time Taken:   5185 nanoseconds
+Best Time Taken:      4836 nanoseconds
+Z-Score of best time: 0.216463
+Standard Deviation:   1612.29 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #15
+========================================
+		  8*9 = 72
+
+Average Time Taken:   2652 nanoseconds
+Best Time Taken:      2516 nanoseconds
+Z-Score of best time: 0.179948
+Standard Deviation:   755.772 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #16
+========================================
+		  876*2+3/2*7 = 1762.5
+
+Average Time Taken:   10183 nanoseconds
+Best Time Taken:      9669 nanoseconds
+Z-Score of best time: 0.183225
+Standard Deviation:   2805.29 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #17
+========================================
+		  9*6^4 = 11664
+
+Average Time Taken:   5287 nanoseconds
+Best Time Taken:      5042 nanoseconds
+Z-Score of best time: 0.19266
+Standard Deviation:   1271.67 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #18
+========================================
+		  9^2 = 81
+
+Average Time Taken:   2800 nanoseconds
+Best Time Taken:      2617 nanoseconds
+Z-Score of best time: 0.200454
+Standard Deviation:   912.929 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #19
+========================================
+		  9^2*(8) = 648
+
+Average Time Taken:   5323 nanoseconds
+Best Time Taken:      5023 nanoseconds
+Z-Score of best time: 0.168335
+Standard Deviation:   1782.16 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #20
+========================================
+		  9ncr5 = 173
+
+Average Time Taken:   3107 nanoseconds
+Best Time Taken:      2931 nanoseconds
+Z-Score of best time: 0.1625
+Standard Deviation:   1083.07 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #21
+========================================
+		  9npr4 = 3024
+
+Average Time Taken:   3131 nanoseconds
+Best Time Taken:      2848 nanoseconds
+Z-Score of best time: 0.183047
+Standard Deviation:   1546.05 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #22
+========================================
+		  cos(90 = -0.448074
+
+Average Time Taken:   2964 nanoseconds
+Best Time Taken:      2777 nanoseconds
+Z-Score of best time: 0.142866
+Standard Deviation:   1308.92 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #23
+========================================
+		  sin(1 = 0.841471
+
+Average Time Taken:   3229 nanoseconds
+Best Time Taken:      2700 nanoseconds
+Z-Score of best time: 0.342479
+Standard Deviation:   1544.62 nanoseconds
+
+Test Case is : CORRECT!
+----------------------------------------
+
+		   Equation Test #24
+========================================
 		  tan(58 = 8.33086
 
-Average Time Taken:   2740 nanoseconds
-Best Time Taken:      2622 nanoseconds
-Z-Score of best time: 0.287664
-Standard Deviation:   410.201 nanoseconds
+Average Time Taken:   2886 nanoseconds
+Best Time Taken:      2648 nanoseconds
+Z-Score of best time: 0.208436
+Standard Deviation:   1141.83 nanoseconds
 
 Test Case is : CORRECT!
 ----------------------------------------

@@ -9,7 +9,7 @@ typedef std::chrono::high_resolution_clock Clock;
 
 #include "Binary_Cal_Tree.h"
 
-#define TEST_AMOUNT 1
+#define TEST_AMOUNT 10000
 
 
 using namespace std;
@@ -79,103 +79,9 @@ double getStandardDeviation(double mean,unsigned long timed_data[],size_t size)
 }
 
 
-double asm_power(double base,int exponent){
-    
-    double result = base;
-    
-    // Exponent
-    asm ("finit;"               // Init FPU stack
-         "movl %2,%%ecx;"       // Move exponent to to ecx
-         
-         "cmpl $1,%%ecx;"       // Ensure that ecx is not 1
-         "je done;"             // Result will be just base
-         
-         "cmpl $0,%%ecx;"       // Checks for Zero Power Rule
-         // Move 1 to result (%0)
-         "je done;"
-         
-         "cmpl $-1,%%ecx;"      // Checks for negative exponents
-         "jg loop;"
-         // Change base for negs (1/2)
-         
-         
-         "loop:;"
-             "fldl %0;"         // Push result var to stack
-             "fmull %1;"        // Multiply by base value
-             "fstpl %0;"        // Return result
-         
-             "decl %%ecx;"      // Ensures looping will continue until exponent is 1
-             "cmpl $1,%%ecx;"
-             "jne loop;"
-         
-         "done:;"
-         
-             :"=m"(result)
-             : "m" (base),"m"(exponent)
-             : "%eax","%ecx");
-    
-    return result;
-}
-
-int factorial(int base)
-{
-    int result = 0;
-    asm ("movl %1, %%ecx;"
-         "cmpl $1,%1;"
-         "je"
-         : "=r" (result)
-         : "r" (base)
-         : "%eax"
-         );
-    
-    
-    return 0;
-}
-
-
-
 
 int main(int argc, const char * argv[])
 {
-    
-    cout << factorial(6) << "\n";
-
-    return 0;
-    
-    /*
-    int var1,var2,var3;
-    
-    asm ("  mov %1, %%eax \n\t"
-         "  add $2, %%eax \n\t"
-         "  mov %%eax, %0 \n\t"
-         : "=r" (var2)
-         : "r" (var1)
-         );
-     */
-    
-    
-    
-    /*
-    asm("   movd    %2,%0;"
-        "   add    %1,%0;"
-        : "=r" (var3)
-        : "r" (var1), "r" (var2)
-        );
-    cout << var3 << endl;
-    */
-
-    /*
-    float arg1,arg2,result;
-    __asm__ ( "fld %1;"
-             "fld %2;"
-             "fadd;"
-             "fstp %0;" : "=g" (result) : "g" (arg1), "g" (arg2) ) ;
-    */
-
-    
-    
-    
-    
     
     // Variables to handle the calculator
     Binary_Cal_Tree calculator;
@@ -189,8 +95,8 @@ int main(int argc, const char * argv[])
     //----------------------------------------------------------------------------
     
     // Path for the test cases
-    const string abs_input_file_path = local_project_directory + "Comparing\ C++\ and\ Assembly\ Calculators/test_cases.txt";
-    const string abs_output_file_path = local_project_directory + "Comparing\ C++\ and\ Assembly\ Calculators/Test\ Case\ Results/ASM_Test_Results.txt";
+    const string abs_input_file_path = local_project_directory + "Calculator_Comparison/Comparing\ C++\ and\ Assembly\ Calculators/test_cases.txt";
+    const string abs_output_file_path = local_project_directory + "Calculator_Comparison/Comparing\ C++\ and\ Assembly\ Calculators/Test\ Case\ Results/ASM_Test_Results.txt";
     
     
     // Get equations to answers map
@@ -211,14 +117,14 @@ int main(int argc, const char * argv[])
     unsigned long timed_data[TEST_AMOUNT];
     
     unsigned long long total_test_time = 0,
-                       total_all_best_times = 0,
-                       total_all_average_times = 0;
+    total_all_best_times = 0,
+    total_all_average_times = 0;
     
     unsigned long best_time_case;
     
     double mean,
-           standard_deviation,
-           best_case_z_score;
+    standard_deviation,
+    best_case_z_score;
     
     unsigned int equation_counter = 0;
     // ---
@@ -267,12 +173,12 @@ int main(int argc, const char * argv[])
         {
             ostringstream os;
             os  << "\t\t   Equation Test #" << equation_counter + 1 << "\n" << string(40, '=')
-                << "\n\t\t  " << equation_str << " = " << equated_value << "\n"
-                << "\nAverage Time Taken:   " << mean << " nanoseconds"
-                << "\nBest Time Taken:      " << best_time_case << " nanoseconds"
-                << "\nZ-Score of best time: " << best_case_z_score
-                << "\nStandard Deviation:   " << standard_deviation << " nanoseconds\n"
-                << "\nTest Case is : ";
+            << "\n\t\t  " << equation_str << " = " << equated_value << "\n"
+            << "\nAverage Time Taken:   " << mean << " nanoseconds"
+            << "\nBest Time Taken:      " << best_time_case << " nanoseconds"
+            << "\nZ-Score of best time: " << best_case_z_score
+            << "\nStandard Deviation:   " << standard_deviation << " nanoseconds\n"
+            << "\nTest Case is : ";
             
             
             if ((int)(equated_value * 1000.0)/1000.0 == it->second)
@@ -306,12 +212,12 @@ int main(int argc, const char * argv[])
     outputFile.close();
     
     cout << ":::Final Results of Non-Assembly Calculator:::\n"
-            << string(46,'=') << "\n\n"
-            << "Average of all best case testing operations :    " << total_all_best_times/equation_counter
-            << " nanoseconds \n"
-            << "Average of all average case testing operations : " << total_all_average_times/equation_counter
-            << " nanoseconds \n"
-            << "\n" << string(46,'=') << "\n";
+    << string(46,'=') << "\n\n"
+    << "Average of all best case testing operations :    " << total_all_best_times/equation_counter
+    << " nanoseconds \n"
+    << "Average of all average case testing operations : " << total_all_average_times/equation_counter
+    << " nanoseconds \n"
+    << "\n" << string(46,'=') << "\n";
     
     return 0;
 }

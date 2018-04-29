@@ -31,7 +31,7 @@ typedef std::chrono::high_resolution_clock Clock;
 
 #include "Binary_Cal_Tree.h"
 
-#define TEST_AMOUNT 8000
+#define TEST_AMOUNT 10000
 
 
 using namespace std;
@@ -59,7 +59,7 @@ map<string,double> get_test_cases(const string abs_input_file_path)
     // Iterate through file
     while(getline(file, file_line))
     {
-        
+        cout << file_line << "\n";
         // Delete all spaces in the string
         file_line.erase(remove_if(file_line.begin(), file_line.end(), ::isspace), file_line.end());
         
@@ -68,6 +68,7 @@ map<string,double> get_test_cases(const string abs_input_file_path)
             // Split the string by the "=" to get the equation and the answer
             std::size_t pos = file_line.find("=");
             equation_solution[file_line.substr(0,pos)] = stod((file_line.substr(pos)).erase(0,1));
+            cout << file_line << "\n";
             
         }
         // De-Bugging catch cases.
@@ -115,8 +116,8 @@ int main(int argc, const char * argv[])
     //----------------------------------------------------------------------------
     
     // Path for the test cases
-    const string abs_input_file_path = local_project_directory + "Comparing\ C++\ and\ Assembly\ Calculators/test_cases.txt";
-    const string abs_output_file_path = local_project_directory + "Comparing\ C++\ and\ Assembly\ Calculators/Test\ Case\ Results/C++_Test_Results.txt";
+    const string abs_input_file_path = local_project_directory + "Calculator_Comparison/Comparing\ C++\ and\ Assembly\ Calculators/test_cases.txt";
+    const string abs_output_file_path = local_project_directory + "Calculator_Comparison/Comparing\ C++\ and\ Assembly\ Calculators/Test\ Case\ Results/C++_Test_Results.txt";
     
     
     // Get equations to answers map
@@ -153,6 +154,7 @@ int main(int argc, const char * argv[])
     for ( it = equation_solution.begin(); it != equation_solution.end(); it++ )
     {
         equation_str = it->first;
+        cout << equation_str << "\n";
         
         // ---
         calculator.create_tree_with_infix(equation_str);
