@@ -1,6 +1,7 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
+\usepackage{grffile}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -61,7 +62,7 @@ The goal of this project is to recreate a past program that used a tree to calcu
 \section*{Anticipated Challenges}
 
 \begin{itemize}
-  \item One of the biggest concerns with this project was finding the proper syntax to properly convert and improve upon the preexisting code to it’s assembly variant. 
+  \item One of the biggest concerns with this project was finding the proper syntax to properly convert and improve upon the preexisting code to itâs assembly variant. 
   \item Properly dealing with floating points in the FPU during floating point operations and being able tell which processing unit should be used with the provided value passed.
   \item Implementing negative number handling and negative operations.
   \item Accounting for overflow/underflow of values for user input and how to use register to better handle the problem. 
@@ -80,14 +81,23 @@ The goal of this project is to recreate a past program that used a tree to calcu
 
 \section*{Implementation}
 \smallskip 
-In the actual implementation of this project we created two separate environments, one to run the C++ variant, and one for the assembly. While the C++ version was fairly straightforward, the assembly faced a few challenges. The biggest of said challenges is that the C++ compiler does a massive number of optimizations to C++ code, while the assembly code remains unaffected and unoptimized at that level. As such when we began our project we noticed that the C++ version was beating the assembly version by a wide margin. We attempted to remedy this issue by using SSE functionality for our floating point operations, however as this application was not meant to handle multiple inputs and as such there isn't multiple data to pack.
+In the actual implementation of this project we created two separate environments, one to run the C++ variant, and one for the assembly. While the C++ version was fairly straightforward, the assembly faced a few challenges. The biggest of said challenges is that the C++ compiler does a massive number of optimization to C++ code, while the assembly code remains unaffected and unoptimized at that level. As such when we began our project we noticed that the C++ version was beating the assembly version by a wide margin. We attempted to remedy this issue by using SSE functionality for our floating point operations, however as this application was not meant to handle multiple inputs and as such there isn't multiple data to pack.
 
 \smallskip
 The workload of this project was accomplished through a large number of late night and a lack of sleep. While the programming required wasn't as complex as it could have been, the sheer amount of code and analysis generate for this project was very time consuming. The original project needed to be improved through threading deletion of trees, syntax updates and bug fixes, an attempt at handling negative numbers (with little success, and not enough time to complete), and a proper file system for handling test cases. Eric handled most of the updates to the original project, as he was more familiar with the software, as well as calculating the comparisons between the two applications, while Alice handled most of the logic for asm translations. 
 
 \section*{Data Visualizations}
 \smallskip
-First the operation creates a tree with infix notation. We do not have the creation of the binary tree as part of the timing process because both implementing have the same exact process for creating the tree and the extra data could leave room for error. Afterwards, we have a highly optimized clock that calculates the time it took to evaluate the tree. Note the tree does not deconstruct the nodes as we recursively iterate through it; nodes are deleted upon creation of new tree systems and during the deconstruction of the entire system. We then insert the given time in nanoseconds to an array to get the given standard deviation, mean, and best times. Finally we pass the output of overall information into a test file. After retrieving the actual data, we used Google Sheets to create proper graphs of the data, and used MiniTabs to establish that C++ is in fact faster than Assembly using 2-sample T calculations. 
+First the operation creates a tree with infix notation. We do not have the creation of the binary tree as part of the timing process because both implementing have the same exact process for creating the tree and the extra data could leave room for error. Afterwards, we have a highly optimized clock that calculates the time it took to evaluate the tree. Note the tree does not deconstruct the nodes as we recursively iterate through it; nodes are deleted upon creation of new tree systems and during the deconstruction of the entire system. We then insert the given time in nanoseconds to an array to get the given standard deviation, mean, and best times. Finally we pass the output of overall information into a test file. After retrieving the actual data, we used Google Sheets to create proper graphs of the data, and used MiniTabs to establish that C++ is in fact faster than Assembly using 2-sample T calculations.
+\smallskip
+\hfill\includegraphics[width=190mm]{images/Best Case Scenario.png}\hspace*{\fill}
+
+\hfill\includegraphics[width=190mm]{images/Average Best Case.png}\hspace*{\fill}
+
+In the MiniTabs section we discovered that almost all of our results when comparing the results of C++ (Sample 1) to our ASM(Sample 2) had p-value bellow .0001. Thus, meaning we can accurately discern the given range differences between the two sample sets in each given operator case. See our full project repository to see our all the data we have gathered between these results. 
+\href{https://github.com/EricCacciavillani/Calculator_Comparison}{Calculator Comparison Project}
+
+
 
 \section*{Interpreted Results and Conclusions}
 \smallskip
