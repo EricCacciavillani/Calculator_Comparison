@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Final_Binary_Tree_Calc_C__.dir/Binary_Cal_Tree.cpp.o CMakeFiles/Final_Binary_Tree_Calc_C__.dir/main.cpp.o  -o Final_Binary_Tree_Calc_C__ 

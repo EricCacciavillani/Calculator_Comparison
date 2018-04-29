@@ -1,0 +1,50 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/codewonderland/Calculator_Comparison/Comparing C++ and Assembly Calculators/Final_Binary_Tree_Calc_C++/Final_Binary_Tree_Calc_C++/Binary_Cal_Tree.cpp
+Binary_Cal_Tree.h
+/home/codewonderland/Calculator_Comparison/Comparing C++ and Assembly Calculators/Final_Binary_Tree_Calc_C++/Final_Binary_Tree_Calc_C++/Binary_Cal_Tree.h
+
+/home/codewonderland/Calculator_Comparison/Comparing C++ and Assembly Calculators/Final_Binary_Tree_Calc_C++/Final_Binary_Tree_Calc_C++/Binary_Cal_Tree.h
+iostream
+-
+string
+-
+algorithm
+-
+map
+-
+queue
+-
+stack
+-
+math.h
+-
+cmath
+-
+thread
+-
+
+/home/codewonderland/Calculator_Comparison/Comparing C++ and Assembly Calculators/Final_Binary_Tree_Calc_C++/Final_Binary_Tree_Calc_C++/main.cpp
+iostream
+-
+algorithm
+-
+string
+-
+sstream
+-
+fstream
+-
+chrono
+-
+limits
+-
+Binary_Cal_Tree.h
+/home/codewonderland/Calculator_Comparison/Comparing C++ and Assembly Calculators/Final_Binary_Tree_Calc_C++/Final_Binary_Tree_Calc_C++/Binary_Cal_Tree.h
+
