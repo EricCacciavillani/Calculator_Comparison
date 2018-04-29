@@ -1,0 +1,115 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+\usepackage[backend=bibtex,
+style=numeric,
+bibencoding=ascii
+%style=alphabetic
+%style=reading
+]{biblatex}
+\addbibresource{sample.bib}
+
+\usepackage[letterpaper,voffset=-.1in,top=0.75in, bottom=0.75in, left=0.75in, right=0.75in]{geometry}
+\linespread{1.5}  
+
+
+\title{Inline Assembly Expression Tree Calculator}
+\author{Eric Cacciavillani and Alice Easter}
+\begin{document}
+
+\maketitle
+
+\begin{tikzpicture}[remember picture, overlay]
+  \node[opacity=0.09,inner sep=0pt] at (current page.center)
+   {\includegraphics[width=\paperwidth,height=\paperheight]{calc.png}};
+\end{tikzpicture}
+
+\section*{Research Topic and Goals}
+\smallskip
+The goal of this project is to recreate a past program that used a tree to calculate any math equation passed to it. This system would be using C++ to create and handle the tree structure. Then using a combination of inline assembly and external assembly files to handle the logic/math to find the solution. In addition, we wanted to compare clock cycles from both implementations to document the level of improvement between the two variants. Continuing on, we also wanted to find ways of re-implementing library provided functionality in assembly. Finally, once the project is completed I am curious about seeing the overall speed differences between the original implementation versus the assembly execution.
+
+
+\section*{Proposed Design Schema}
+\begin{enumerate}
+  \item Convert user input equation to a prefix notation 
+  \item Using the prefix notation of the equation, create a tree structure in C++ to maintain values, operators, and user created functions
+  \begin{itemize}
+      \item Deconstruct leaves as we move through the tree to ensure proper usage
+  \end{itemize}
+  \item Error handle any and all syntactical mistakes
+  \item Handle any mathematical errors that could be thrown
+  \begin{itemize}
+      \item Ex: Divide by zero
+  \end{itemize}
+  \item Handle overflow and underflow on variables
+  \item Determine for the given operation to use either the FPU or CPU for the given data types. 
+  \begin{itemize}
+      \item Another option is just to use the FPU entirely and have floating bits cleared out 
+  \end{itemize}
+\end{enumerate}
+
+
+
+
+\section*{Anticipated Challenges}
+
+\begin{itemize}
+  \item One of the biggest concerns with this project was finding the proper syntax to properly convert and improve upon the preexisting code to it’s assembly variant. 
+  \item Properly dealing with floating points in the FPU during floating point operations and being able tell which processing unit should be used with the provided value passed.
+  \item Implementing negative number handling and negative operations.
+  \item Accounting for overflow/underflow of values for user input and how to use register to better handle the problem. 
+  \item Speeding up the creation of the tree and syntax analysis of the equation.
+  \item Adding more scalability to allow other users/programmers to create their own functionality calls in the calculator.
+\end{itemize}
+
+
+\section*{Describing Interest with the Specific Topic}
+\begin{itemize}
+  \item Data structure design has been a big part of our education, and as such has become something we have somewhat of a passion for. It may be rather strange, but it can be quite therapeutic to create high performance data structures.
+  \item In general, the concept of taking the scalability of C++ and pairing it with the raw speed of assembly can be quite enjoyable.
+  \item This was a project that Eric really appreciated in our Data Structure class so it felt enjoyable to have a throw back to it.
+  \item We were curious to see how much improvement we could see between the assembly and C++ variant.
+\end{itemize} 
+
+\section*{Implementation}
+\smallskip 
+In the actual implementation of this project we created two separate environments, one to run the C++ variant, and one for the assembly. While the C++ version was fairly straightforward, the assembly faced a few challenges. The biggest of said challenges is that the C++ compiler does a massive number of optimizations to C++ code, while the assembly code remains unaffected and unoptimized at that level. As such when we began our project we noticed that the C++ version was beating the assembly version by a wide margin. We attempted to remedy this issue by using SSE functionality for our floating point operations, however as this application was not meant to handle multiple inputs and as such there isn't multiple data to pack.
+
+\smallskip
+The workload of this project was accomplished through a large number of late night and a lack of sleep. While the programming required wasn't as complex as it could have been, the sheer amount of code and analysis generate for this project was very time consuming. The original project needed to be improved through threading deletion of trees, syntax updates and bug fixes, an attempt at handling negative numbers (with little success, and not enough time to complete), and a proper file system for handling test cases. Eric handled most of the updates to the original project, as he was more familiar with the software, as well as calculating the comparisons between the two applications, while Alice handled most of the logic for asm translations. 
+
+\section*{Data Visualizations}
+\smallskip
+First the operation creates a tree with infix notation. We do not have the creation of the binary tree as part of the timing process because both implementing have the same exact process for creating the tree and the extra data could leave room for error. Afterwards, we have a highly optimized clock that calculates the time it took to evaluate the tree. Note the tree does not deconstruct the nodes as we recursively iterate through it; nodes are deleted upon creation of new tree systems and during the deconstruction of the entire system. We then insert the given time in nanoseconds to an array to get the given standard deviation, mean, and best times. Finally we pass the output of overall information into a test file. After retrieving the actual data, we used Google Sheets to create proper graphs of the data, and used MiniTabs to establish that C++ is in fact faster than Assembly using 2-sample T calculations. 
+
+\section*{Interpreted Results and Conclusions}
+\smallskip
+In the end, our data supported the idea that C++ is significantly faster than inline assembly. There are a number of reasons why this is not entirely accurate, and that is absolutely up to to the current skill levels of us as programmers. The reason that the C++ code is so much faster is due to the fact that the compiler optimizes the code so that when it compiles to assembly it is as efficient as humanly possible, and those individuals who have created these compilers have dedicated their lives to said projects. While it is not impossible for us as programmers to beat those individuals who create compilers, it definitely requires a large amount of skill and/or luck. 
+
+\section*{References/Citations/Tools Material}
+\label{mathrefs}
+\begin{itemize}
+
+    \item \href{http://scanftree.com/Data_Structure/prefix-postfix-infix-online-converter}{Online prefix notation calculator}
+    
+    \item \href{https://cs.nyu.edu/courses/fall11/CSCI-GA.1133-001/rct257_files/Expression_Trees.pdf}{Detailed example of setting up a expression tree with prefix notation}
+    
+    \item \href{https://education.ti.com/-/media/6CC4C5AED5004F808892046AD33D4A35}{Downloads Ti-84 High Level documentation to pull ideas to implement extra functionality}
+    
+    \item \href{https://sites.google.com/site/arch1utep/home/course_outline/translating-complex-expressions-into-assembly-language-using-expression-trees}{Converting Expression Trees to assembly code}
+    
+    \item \href{https://godbolt.org/}{Cute online C++ to assembly code.(Might make syntax translations easier)}
+    
+    \item\href{https://www.cs.usfca.edu/~galles/compilerdesign/x86.pdf}{Handling tree in pure assembly}   
+    
+\end{itemize} 
+
+
+\end{document}
